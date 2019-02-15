@@ -22,3 +22,11 @@ button {
   font-size: 14px;
 
 }
+
+#eaten {
+  color: white;
+}
+
+#remaining {
+  color: white;
+}
