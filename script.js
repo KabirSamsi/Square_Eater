@@ -40,10 +40,10 @@ const createMaze = () => {
     }};
   };
 
-createMaze();
-
 $(start).click(() => {
-
+  ate = 0;
+  rmn = 5;
+  createMaze();
   for (let x = 52; x < 52*14; x += 52) {
     for (let y = 52; y < 52*7; y += 52) {
       potential_coors.push([x, y]);
@@ -92,18 +92,21 @@ $(start).click(() => {
   const changeTimer = () => {
     time -= 1;
     timer.innerHTML = `Time left: ${time} seconds<br><br>`;
-    return time;
     console.log(ate)
     if (ate == 5) {
       alert("Yay! You won the game")
+      clearInterval(countdown)
     }
+    return time
   };
 
   countdown = window.setInterval(changeTimer, 1000);
 
   window.setTimeout(() => {
     clearInterval(countdown)
-    alert("Sorry you lost")
+    if (ate < 5) {
+      alert("Sorry you lost")
+    }
   }, 10120)
 
   ael(up, "playerY", playerY, 0, "top", -52);

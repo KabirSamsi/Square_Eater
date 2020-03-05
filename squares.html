@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="../square_pattern.ico" />
+    <title>Squares Animation</title>
+  </head>
+  <body>
+    <canvas></canvas>
+    <script>
+
+      const body = document.querySelector('body')
+      const canvas = document.querySelector('canvas')
+      const width = canvas.width = window.innerWidth
+      const height = canvas.height = window.innerHeight
+      let ctx = canvas.getContext('2d')
+      let randomSquare = Math.floor(Math.random()* width)
+      ctx.fillStyle = ('black')
+      ctx.fillRect(0, 0, width, height)
+
+      let colors = ['blue', 'darkblue', 'steelblue', 'white', 'grey']
+
+      class Figure {
+        constructor(width, height, color, x, y) {
+          this.width = width
+          this.height = height
+          this.color = color
+          this.x = x
+          this.y = y
+        }
+
+        create() {
+          ctx.fillStyle = this.color
+          ctx.fillRect(this.x, this.y, this.width, this.height)
+        }
+
+      }
+
+      function createSquare(size, color, x, y) {
+        let square = new Figure(size, size, color, x, y)
+        square.create()
+      }
+
+      function loop(y) {
+        let counter = 0;
+        let x = 5;
+        while(counter < 9.5) {
+          for(let i = 0; i < colors.length; i += 1) {
+            createSquare(25, colors[Math.floor(Math.random()*colors.length)], x, y)
+            // createSquare(25, colors[i], x, y)
+            x += 30
+          }
+          counter += 1
+        }
+      }
+
+  let player = createSquare(25, 'green', 5, 430)
+  let x_coor = 5;
+
+    for(let counter = 0; counter < 2000; counter +=1) {
+      for(let y = 520; y < 820; y += 30) {
+          while(x_coor < width) {
+            player = createSquare(25, 'black', x_coor, 430)
+            x_coor += 30;
+            player = createSquare(25, 'green', x_coor, 430)
+            body.addEventListener('click', () => {
+              player = createSquare(25, 'green', randomSquare, y - 120)
+            })
+      }
+        window.setTimeout(loop, 50, y)
+         if (y === 520) {
+           createSquare(25, 'red', randomSquare, y - 30)
+           createSquare(25, 'red', randomSquare, y - 60)
+           createSquare(25, 'red', randomSquare, y - 90)
+         }
+      }
+
+    }
+
+</script>
+  </body>
+</html>
