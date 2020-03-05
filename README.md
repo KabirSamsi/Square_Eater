@@ -1,0 +1,1 @@
+Game which I created in which user has to collect all red squares in a specified amount of time. 
